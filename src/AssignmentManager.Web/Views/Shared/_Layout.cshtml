@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <script src="/js/shared.js" asp-append-version="true"></script>
+
+    <title>AssignmentManager</title>
+    <link rel="stylesheet" href="/css/shared/layout.css" />
+    <link rel="stylesheet" href="/css/shared/validation.css" />
+</head>
+<body>
+    <header>
+        <a asp-controller="Assignments" asp-action="Index">
+            <div class="header_logo">
+                <img src="/content/mainLogoNoTxt.svg" alt="Assignment manager logo">
+                <span>ASSIGNMENT<br>MANAGER</span>
+            </div>
+        </a>
+        @*Modifier '--left' Moves Title Left*@
+        <span class="mobile_header_title">@ViewData["Title"]</span>
+        @*Modifier '--disable' Hides Back Button*@
+        <input type="image" class="mobile_header_back_btn" src="/content/headerMobileBack.svg" onclick="history.back()">
+        <nav>
+            <ul>
+                <li class="nav_option--schedule">
+                    <a asp-controller="Assignments" asp-action="Index">SCHEDULE</a>
+                </li>
+                <li class="nav_option--classes">
+                    <a asp-controller="Classes" asp-action="Index">CLASSES</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile_menu">
+            <div class="menu_line"></div>
+            <div class="menu_line"></div>
+            <div class="menu_line"></div>
+        </div>
+    </header>
+
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+
+    <img class="corner_graphic" src="/content/cornerGraphic.svg" />
+    <img class="corner_graphic_mobile" src="/content/cornerGraphicMobile.svg" />
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

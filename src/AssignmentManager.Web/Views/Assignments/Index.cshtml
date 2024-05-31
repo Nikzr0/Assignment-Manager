@@ -1,0 +1,110 @@
+﻿@using System.Globalization
+@using AssignmentManager.Data
+
+@model List<AssignmentManager.Web.ViewModels.Assignment.AssignmentDetailsViewModel>
+@{
+    ViewData["Title"] = "Schedule";
+    var db = (AssignmentManagerDbContext)ViewBag.Context;
+}
+
+<link rel="stylesheet" href="/css/assignments/index.css" />
+
+<script>
+    const scheduleTab = document.getElementsByClassName("nav_option--schedule")[0];
+    const classesTab = document.getElementsByClassName("nav_option--classes")[0];
+
+    scheduleTab.classList.add("nav_option--active");
+</script>
+
+<h1 class="main_title">SCHEDULE</h1>
+
+<div class="assignments_container assignments_container--overdue">
+    @{
+        var now = DateTime.UtcNow;
+
+        if (Model.Where(x => x.DueDate.Date < now.Date && x.IsCompleted == false).Count() > 0)
+        {
+            <div class="status_arrow status_arrow--overdue">
+                <img src="/content/upcomingArrowBG.svg" />
+                <span>OVERDUE</span>
+            </div>
+        }
+
+        foreach (var item in Model.OrderBy(x => x.DueDate))
+        {
+
+            if (item.DueDate.Date < now.Date && item.IsCompleted == false)
+            {
+                <a asp-controller="Assignments" asp-action="Details" asp-route-id="@item.Id">
+                    <div class="assignment">
+                        <div style="background: @Html.DisplayFor(modelItem => item.ColorHex)" class="assignment__color_tag"></div>
+                        <span class="assignment__name">@Html.DisplayFor(modelItem => item.Name)</span>
+                        <span class="assignment__due_date">@Html.DisplayFor(modelItem => item.DueDateMessage)</span>
+                        <img class="assignment__arrow" src="/content/classArrow.svg" />
+                    </div>
+                </a>
+            }
+        }
+    }
+</div>
+
+<div class="assignments_container assignments_container--upcoming">
+    @{
+        if (Model.Where(x => x.DueDate.Date >= now.Date && x.IsCompleted == false).Count() > 0)
+        {
+            <div class="status_arrow status_arrow--upcoming">
+                <img src="/content/upcomingArrowBG.svg" />
+                <span>UPCOMING</span>
+            </div>
+        }
+
+        foreach (var item in Model.OrderBy(x => x.DueDate))
+        {
+            if (item.DueDate.Date >= now.Date && item.IsCompleted == false)
+            {
+                <a asp-controller="Assignments" asp-action="Details" asp-route-id="@item.Id">
+                    <div class="assignment">
+                        <div style="background: @Html.DisplayFor(modelItem => item.ColorHex);" class="assignment__color_tag"></div>
+                        <span class="assignment__name">@Html.DisplayFor(modelItem => item.Name)</span>
+                        <span class="assignment__due_date">@Html.DisplayFor(modelItem => item.DueDateMessage)</span>
+                        <img class="assignment__arrow" src="/content/classArrow.svg" />
+                    </div>
+                </a>
+            }
+        }
+        // Better to be upper line 20
+        if (Model.Where(x => !x.IsCompleted).Count() == 0)
+        {
+            <div class="no_assignments">
+                <img class="blue_cat" src="/content/blueCatShadow.svg">
+                <div>
+                    @{
+                        if (db.Classes.Any())
+                        {
+                            <h2>NO ASSIGNMENTS</h2>
+                            <span>Add an assignment with the " <a asp-action="Create"><img src="/content/plus.svg" /></a> " icon.</span>
+                        }
+                        else
+                        {
+                            <h2>NO CLASSES</h2>
+                            <span>Create a class from <br>the <a style="text-decoration: none;" asp-controller="Classes" asp-action="Index"><span style="font-size: 1.1rem; padding: 4px 7px 4px 7px; background: #006FBB; color: #FFFFFF; border-radius: 11px;">CLASSES</span></a> tab.</span>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<a asp-controller="Assignments" asp-action="Completed">
+    <div class="completed_assignments">
+        <img src="/content/completedIcon.svg" />
+    </div>
+</a>
+
+<a asp-action="Create">
+    <div class="add_assignment">
+        <div class="add_assignment__line"></div>
+        <div class="add_assignment__line"></div>
+    </div>
+</a>

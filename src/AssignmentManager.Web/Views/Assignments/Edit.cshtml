@@ -1,0 +1,71 @@
+﻿@using AssignmentManager.Data
+@model AssignmentManager.Web.ViewModels.Assignment.AssignmentDetailsViewModel
+@{
+    ViewData["Title"] = "Edit Assignment";
+    var db = (AssignmentManagerDbContext)ViewBag.Context;
+}
+
+<link rel="stylesheet" href="/css/assignments/edit.css" />
+
+<script>
+    const scheduleTab = document.getElementsByClassName("nav_option--schedule")[0];
+    const classesTab = document.getElementsByClassName("nav_option--classes")[0];
+
+    scheduleTab.classList.add("nav_option--active");
+</script>
+
+<h1 class="main_title">EDIT ASSIGNMENT</h1>
+
+<form asp-action="Edit" class="edit_assignment">
+    <div class="edit_assignment__l">
+        <div class="edit_assignment__l__name">
+            <label class="form_label" asp-for="Name">Assignment Title</label>
+            <input class="form_input" asp-for="Name" placeholder="Name" />
+            <span asp-validation-for="Name" class="validation_error"></span>
+        </div>
+
+        <div class="edit_assignment__l__due_date">
+            <label class="form_label" asp-for="DueDate">Due Date</label>
+            <input class="form_input" type="date" asp-for="DueDate" placeholder="DueDate" />
+            <span asp-validation-for="DueDate" class="validation_error" ></span>
+        </div>
+
+        <div class="edit_assignment__l__class">
+            <label class="form_label" asp-for="ClassId">Class</label>
+            <select class="form_input" asp-for="ClassId">
+                @{
+                    var classes = db.Classes.Select(x => new
+                    {
+                        x.Id,
+                        x.Name
+                    })
+                    .OrderBy(x => x.Id)
+                    .ToList();
+
+                    for (var i = 0; i < classes.Count; i++)
+                    {
+                        <option value="@classes[i].Id">@classes[i].Name</option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="ClassId" class="validation_error" ></span>
+        </div>
+    </div>
+
+    <div class="edit_assignment__description">
+        <label class="form_label" asp-for="Description">Description</label>
+        <textarea asp-for="Description" placeholder="Description (optional)"></textarea>
+    </div>
+
+    <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@Model.Id">
+        <div class="delete">
+            <img src="/content/delete.png" />
+        </div>
+    </a>
+
+    <div>
+        <button type="submit" class="save">
+            <img src="/content/save.png" />
+        </button>
+    </div>
+</form>

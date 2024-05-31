@@ -1,0 +1,59 @@
+﻿@using AssignmentManager.Data
+@model AssignmentManager.Data.Models.Class
+@{
+    ViewData["Title"] = "New Class";
+}
+
+<link rel="stylesheet" href="/css/classes/create.css" />
+
+<script>
+    const scheduleTab = document.getElementsByClassName("nav_option--schedule")[0];
+    const classesTab = document.getElementsByClassName("nav_option--classes")[0];
+
+    classesTab.classList.add("nav_option--active");
+</script>
+
+<h1 class="main_title">NEW CLASS</h1>
+
+<form asp-action="Create" class="form_create_class">
+    <div class="form_create_class_name">
+        <label class="form_create_class_name__label" asp-for="Name">Class Title</label>
+        <input class="form_create_class_name__input" asp-for="Name" placeholder="Title" />
+        <span asp-validation-for="Name" class="validation_error"></span>
+    </div>
+
+    <div class="form_create_class_color">
+        <div class="form_create_class_color__label">
+            <label>Class Color</label>
+            <span asp-validation-for="ColorId" class="validation_error"></span>
+        </div>
+        <div class="form_create_class_color__input">
+            @{
+                var db = new AssignmentManagerDbContext();
+
+                var colors = db.Colors.ToList();
+
+                foreach (var color in colors)
+                {
+                    <input asp-for="ColorId" type="radio" value="@color.Id" id="color_@color.Id" />
+                    <label style="background-color: @color.Name" for="color_@color.Id" class="color_box"></label>
+                }
+
+            }
+        </div>
+    </div>
+
+    <div>
+        <button type="submit" class="save_class">
+            <img src="/content/save.png" />
+        </button>
+    </div>
+</form>
+
+@*
+    @section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+*@

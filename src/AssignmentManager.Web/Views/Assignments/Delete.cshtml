@@ -1,0 +1,16 @@
+﻿@model AssignmentManager.Web.ViewModels.Assignment.AssignmentDetailsViewModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/css/assignments/delete.css" />
+
+<h1 class="main_title">Delete this Assignment?</h1>
+
+<span class="assignment_name">"@Html.DisplayFor(model => model.Name)"</span>
+
+<form asp-action="Delete">
+    <button type="submit" value="Delete" class="option">DELETE</button>
+    <a asp-action="Index" class="option">CANCEL</a>
+</form>

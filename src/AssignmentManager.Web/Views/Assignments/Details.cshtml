@@ -1,0 +1,58 @@
+﻿@using System.Globalization
+@using AssignmentManager.Data
+
+@model AssignmentManager.Web.ViewModels.Assignment.AssignmentDetailsViewModel
+@{
+    ViewData["Title"] = "Assignment Details";
+    var db = (AssignmentManagerDbContext)ViewBag.Context;
+}
+
+<link rel="stylesheet" href="/css/assignments/details.css" />
+
+<script>
+    const scheduleTab = document.getElementsByClassName("nav_option--schedule")[0];
+    const classesTab = document.getElementsByClassName("nav_option--classes")[0];
+
+    scheduleTab.classList.add("nav_option--active");
+</script>
+
+<h1 class="main_title">@Html.DisplayFor(model => model.Name)</h1>
+<span class="subtitle">@Html.DisplayFor(model => model.ClassName)</span>
+<span class="subtitle">Due @Model.DueDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span>
+<div class="divider"></div>
+<p class="description">
+    @Model.Description
+    @{
+        if (Model.Description == null)
+        {
+            <span class="no_description">No Description</span>
+        }
+    }
+</p>
+
+
+
+@{
+    if (Model.IsCompleted)
+    {
+        <a asp-action="Uncomplete" asp-route-id="@Model.Id">
+            <div class="complete_assignment">
+                <span>UNCOMPLETE</span>
+            </div>
+        </a>
+    }
+    else
+    {
+        <a asp-action="Complete" asp-route-id="@Model.Id">
+            <div class="complete_assignment">
+                <span>COMPLETE</span>
+            </div>
+        </a>
+    }
+}
+
+<a asp-action="Edit" asp-route-id="@Model.Id">
+    <div class="edit_assignment">
+        <img src="/content/edit.svg" />
+    </div>
+</a>

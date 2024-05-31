@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="/css/classes/welcome.css" />
+
+    <div class="welcome">
+        <h1 class="welcome__title">Welcome!</h1>
+    </div>
+
+    <div class="instruction_container">
+        <p class="welcome__instructions">To begin create a class and add an assignment with the "<img src="/content/plus.svg"/>" icon.</p>
+    </div>
+    
+    <div class="bottom_wave">
+        <a asp-controller="Classes" asp-action="">
+            <div class="okay_btn">OKAY</div>
+        </a>
+    </div>

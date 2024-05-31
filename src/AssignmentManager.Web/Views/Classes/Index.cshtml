@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AssignmentManager.Services.Models.Class.DetailsClassServiceModel>
+@{
+    ViewData["Title"] = "Classes";
+}
+
+<link rel="stylesheet" href="/css/classes/index.css" />
+
+<script>
+    const scheduleTab = document.getElementsByClassName("nav_option--schedule")[0];
+    const classesTab = document.getElementsByClassName("nav_option--classes")[0];
+
+    classesTab.classList.add("nav_option--active");
+</script>
+
+<h1 class="main_title">CLASSES</h1>
+
+<div class="classes_container">
+    @{
+        foreach (var item in Model)
+        {
+            <a asp-action="Details" asp-route-id="@item.Id">
+                <div class="class">
+                    <div style="background: @item.Color;" class="class__color_tag"></div>
+                    <span class="class__name">@Html.DisplayFor(modelItem => item.Name)</span>
+                    <span class="class__assignment_count">
+                        @Html.DisplayFor(modelItem => item.Assignments.Count)
+                        @((item.Assignments.Count == 1) ? "assignment" : "assignments")
+                    </span>
+                    <img class="class__arrow" src="/content/classArrow.svg" />
+                </div>
+            </a>
+        }
+        if (Model.Count() == 0)
+        {
+            <div class="no_classes">
+                <img class="blue_cat" src="/content/blueCatShadow.svg">
+                <div>
+                    <h2>NO CLASSES</h2>
+                    <span>Create a class with <br>the " <a asp-controller="Classes" asp-action="Create"><img src="/content/plus.svg" /></a> " icon.</span>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<a asp-controller="Classes" asp-action="Create">
+    <div class="add_class">
+        <div class="add_class__line"></div>
+        <div class="add_class__line"></div>
+    </div>
+</a>

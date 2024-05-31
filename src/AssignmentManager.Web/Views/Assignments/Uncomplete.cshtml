@@ -1,0 +1,16 @@
+﻿@model AssignmentManager.Web.ViewModels.Assignment.AssignmentDetailsViewModel
+@{
+    ViewData["Title"] = "Uncomplete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/css/assignments/uncomplete.css" />
+
+<h1 class="main_title">Uncomplete this Assignment?</h1>
+
+<span class="assignment_name">"@Html.DisplayFor(model => model.Name)"</span>
+
+<form asp-action="Uncomplete">
+    <button type="submit" value="Uncomplete" class="option">UNCOMPLETE</button>
+    <a asp-action="Index" class="option">CANCEL</a>
+</form>

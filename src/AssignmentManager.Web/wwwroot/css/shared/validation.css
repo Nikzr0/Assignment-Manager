@@ -1,0 +1,8 @@
+﻿.validation_error span {
+  display: block;
+  padding-top: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #D94C55;
+  font-style: italic;
+}

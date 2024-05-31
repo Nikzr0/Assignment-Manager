@@ -1,0 +1,35 @@
+﻿@model AssignmentManager.Web.ViewModels.Class.ClassDetailsViewModel
+@{
+    ViewData["Title"] = "Remove Class";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/css/classes/delete.css" />
+
+<script>
+    const scheduleTab = document.getElementsByClassName("nav_option--schedule")[0];
+    const classesTab = document.getElementsByClassName("nav_option--classes")[0];
+
+    classesTab.classList.add("nav_option--active");
+</script>
+
+
+<h1 class="main_title">Delete this Class?</h1>
+<span class="assignment_name">"@Html.DisplayFor(model => model.Name)"</span>
+
+<form asp-action="Delete">
+    <button type="submit" value="Delete" class="option">DELETE</button>
+    <a asp-action="Index" class="option">CANCEL</a>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+

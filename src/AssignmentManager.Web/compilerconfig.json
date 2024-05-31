@@ -1,0 +1,82 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/styles.css",
+    "inputFile": "wwwroot/css/styles.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/layout.css",
+    "inputFile": "wwwroot/css/layout.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/classes/index.css",
+    "inputFile": "wwwroot/css/classes/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/index.css",
+    "inputFile": "wwwroot/css/assignments/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/classes/edit.css",
+    "inputFile": "wwwroot/css/classes/edit.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/classes/create.css",
+    "inputFile": "wwwroot/css/classes/create.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/create.css",
+    "inputFile": "wwwroot/css/assignments/create.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/edit.css",
+    "inputFile": "wwwroot/css/assignments/edit.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/classes/Welcome.css",
+    "inputFile": "wwwroot/css/classes/Welcome.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/details.css",
+    "inputFile": "wwwroot/css/assignments/details.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/classes/details.css",
+    "inputFile": "wwwroot/css/classes/details.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/shared/layout.css",
+    "inputFile": "wwwroot/css/shared/layout.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/classes/delete.css",
+    "inputFile": "wwwroot/css/classes/delete.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/delete.css",
+    "inputFile": "wwwroot/css/assignments/delete.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/completed.css",
+    "inputFile": "wwwroot/css/assignments/completed.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Account/SignIn.css",
+    "inputFile": "wwwroot/css/Account/SignIn.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/complete.css",
+    "inputFile": "wwwroot/css/assignments/complete.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/assignments/uncomplete.css",
+    "inputFile": "wwwroot/css/assignments/uncomplete.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/shared/validation.css",
+    "inputFile": "wwwroot/css/shared/validation.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/shared/notFound.css",
+    "inputFile": "wwwroot/css/shared/notFound.scss"
+  }
+]
